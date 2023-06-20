@@ -1,0 +1,4 @@
+comment = 'Ed25519'
+default_version = '1.0'
+module_pathname = '$libdir/ed25519'
+relocatable = true
