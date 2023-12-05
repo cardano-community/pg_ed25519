@@ -10,6 +10,8 @@
 #endif
 
 int ed25519_create_seed(unsigned char *seed) {
+    size_t result;
+
 #ifdef _WIN32
     HCRYPTPROV prov;
 
@@ -30,8 +32,12 @@ int ed25519_create_seed(unsigned char *seed) {
         return 1;
     }
 
-    fread(seed, 1, 32, f);
+    result = fread(seed, 1, 32, f);
     fclose(f);
+
+    if (result == 0) {
+        return 1;
+    }
 #endif
 
     return 0;
